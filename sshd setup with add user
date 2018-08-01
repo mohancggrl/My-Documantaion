@@ -1,0 +1,26 @@
+#!/bin/bash
+#to change hostname
+echo "Enter your hostname"
+read servername
+echo "you are going to set hostname is $servername"
+echo "$servername" >/etc/hostname
+
+#privateip=$((ifconfig eth0 | grep -w 'inet' | awk '{print $2}'))
+privateip=$(hostname -I)
+echo "$privateip $servername" >>/etc/hosts
+hostname -F /etc/hostname
+echo "your servername is :`hostname` "
+echo "your servername is :$HOSTNAME "
+#to change sshd
+sed -i 's/ PasswordAuthentication no/ PasswordAuthentication yes/g' /etc/ssh/sshd_config
+service sshd restart
+ps -ef | grep sshd
+
+echo -n "user name: "
+read username
+
+echo -n "password: "
+read -s password
+
+adduser "$username"
+echo "$password" | passwd "$username" --stdin
