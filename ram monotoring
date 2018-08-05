@@ -1,0 +1,35 @@
+Ram Monitiring
+-----------------
+First Login to your Ec2 instance
+
+====yum install perl-Switch perl-DateTime perl-Sys-Syslog perl-LWP-Protocol-https perl-Digest-SHA
+====>curl https://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.2.zip -O
+====>ls -ltr
+====>unzip CloudWatchMonitoringScripts-1.2.2.zip && rm CloudWatchMonitoringScripts-1.2.2.zip && cd aws-scripts-mon
+====>cp awscreds.template awscreds.conf
+
+Then go to aws console and give IAM roles cloudwach full access to ec2 instance
+Then create aws cridentials(acces key, secreat key)
+====>AWSAccessKeyId=Access Key
+====>AWSSecretKey=Secreat key
+
+====>./mon-put-instance-data.pl --mem-util --verify --verbose
+====>./mon-put-instance-data.pl --mem-used-incl-cache-buff --mem-util --mem-used --mem-avail
+====>crontab -e
+(enter it will take to vi mode in the vi mode -->*/5 * * * * ~/aws-scripts-mon/mon-put-instance-data.pl --mem-used-incl-cache-buff --mem-util --disk-space-util --disk-path=/ --from-cron)
+====>./mon-put-instance-data.pl --mem-util --mem-used --mem-avail --auto-scaling=only
+====>./mon-put-instance-data.pl --mem-util --mem-used --mem-avail --aggregated=only
+====>./mon-get-instance-stats.pl --recent-hours=12
+
+Then you will get results Like this
+
+Instance i-0eb433bde354dc85e statistics for the last 12 hours.
+
+CPU Utilization
+    Average: 0.76%, Minimum: 0.00%, Maximum: 18.85%
+
+Memory Utilization
+    Average: 39.87%, Minimum: 39.87%, Maximum: 39.87%
+
+Swap Utilization
+    Average: N/A, Minimum: N/A, Maximum: N/A
