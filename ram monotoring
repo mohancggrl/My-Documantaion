@@ -5,7 +5,9 @@ First Login to your Ec2 instance
 ====yum install perl-Switch perl-DateTime perl-Sys-Syslog perl-LWP-Protocol-https perl-Digest-SHA
 ====>curl https://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.2.zip -O
 ====>ls -ltr
-====>unzip CloudWatchMonitoringScripts-1.2.2.zip && rm CloudWatchMonitoringScripts-1.2.2.zip && cd aws-scripts-mon
+====>unzip CloudWatchMonitoringScripts-1.2.2.zip && \
+rm CloudWatchMonitoringScripts-1.2.2.zip && \
+cd aws-scripts-mon
 ====>cp awscreds.template awscreds.conf
 
 Then go to aws console and give IAM roles cloudwach full access to ec2 instance
