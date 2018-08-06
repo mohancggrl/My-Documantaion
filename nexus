@@ -1,0 +1,63 @@
+download nexus in your local
+https://www.sonatype.com/oss-thank-you-zip
+then copy to linux server to by scp command
+unzip this file 
+mv this file /opt/mohan/nexus/bin
+./nexus start
+go to vi nexus file
+then go to 23 line
+give additional = root
+then start nexus
+./nexus start
+then give add rule in inbound rules 8081---anywhere
+then click on browser
+ip:8081/nexus
+the login nexus un:admin pwd:admin123
+then go to maven /opt/maven/conf/setting.xml
+and add 
+<server>   
+    <id>890423</id>   
+  <username>admin</username>
+  <password>admin123</password>
+</server>
+
+<server>
+  <id>InternalReleases</id>
+  <username>admin</username>
+  <password>admin123</password>
+ </server> 
+
+<server>
+  <id>InternalSnapshots</id>
+  <username>admin</username>
+  <password>admin123</password>
+ </server>
+
+give line no111
+past it update it
+
+then goto jenkins 
+goto configure settings------->plugin manager---->goto available search nexus
+nexus arfact uploader---->intall without restart
+
+to install manually plggins click on tghis link
+https://support.sonatype.com/hc/en-us/articles/227256688-How-do-I-configure-the-Nexus-Jenkins-Plugin
+then download
+manage genkins -----manage pliggins ----->advance ----upload pluggingd
+upload and check
+upload
+then go to git
+update code in github then 
+goto jenkins manage jenkins-> configure system
+search for nexus nonarq nexas add
+give server id 
+then give http://localhost:8081/nexus
+then password user name
+add
+click on connection
+
+then goto new jo string 
+
+
+
+/root/.jenkins/workspace/spring-test/target/spring3-mvc-maven-xml-hello-world-1.0-SNAPSHOT.war
