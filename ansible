@@ -36,7 +36,7 @@ Install apache local server
 ---> ansible localhost -m yum -a "name=httpd state=present"
 
 Start apache
-----> ansible localhost -m service -a "name=httpd state=restarted"
+----> ansible localhost -m service -a "name=httpd state=started"
 
 install apache remote(slave) server 
 you neeed ssh (password less) setup
