@@ -1,0 +1,72 @@
+ansible 
+
+First you have to ephel
+
+enable ephel
+--> yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+then update yum
+--> yum update -y
+
+Install ansible
+---> yum install ansible -y
+=============================================================================================================
+/etc/ansible/hosts
+hosts = inventories
+inventories is two types
+1. static inventory ------> we have to update all ip's in manually in host file
+2. dynamic inventory------> It automatically updating ip's(by using scripts)
+
+Modules
+Ex: yum, git, usr
+(search ad hoc commands in google)
+ansible webservers -m yum -a "name=acme state=present"
+module = yum
+a = argumental
+name = package service (ex. name=httpd, name=nginx)
+state = present 
+present = install
+absent = remove
+webservers ---- we defain webserver in hosts
+======================================================================================================
+to ping localhost
+$ansible -m ping localhost
+
+Install apache local server
+---> ansible localhost -m yum -a "name=httpd state=present"
+
+Start apache
+----> ansible localhost -m service -a "name=httpd state=restarted"
+
+install apache remote(slave) server 
+you neeed ssh (password less) setup
+
+first you have to backup host file in /etc/ansible/host
+--->cp host host.backup
+
+go to host and delate all data
+then give onathor sarver Ip with group name
+Ex:
+[slave]
+172.**.**.**
+
+to check connection to onathor server 
+----> ansible -m ping 172.**.**.** (or) ansible -m ping slave
+
+to install apache in remote server(salve)
+----> ansible slsve -m yum -a "name=httpd state=present"
+
+to start apache in remote server(salve)
+-----> ansible slave -m yum -a "name=httpd state=restarted"
+
+it automatically installed apache in remote (slave) server
+
+
+
+
+
+
+
+
+
+
