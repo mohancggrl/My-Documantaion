@@ -1,0 +1,21 @@
+Download the vertual Box
+# https://download.virtualbox.org/virtualbox/5.2.16/VirtualBox-5.2.16-123759-Win.exe  
+Then Install
+
+Download Vagrant 
+# https://releases.hashicorp.com/vagrant/2.1.2/vagrant_2.1.2_x86_64.rpm
+
+then set Path C:\HashiCorp\Vagrant
+
+Then Open gitBash
+# vagrant
+# vagrant --version
+
+Then Creat One directory 
+Goto That directery
+clone Git url
+# git clone https://github.com/mohancggrl/devops-box.git
+
+# vagrant up
+
+This Automaticall Create server by using Vagrantfile
