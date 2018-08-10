@@ -1,0 +1,6 @@
+
+Splunk forwarder
+# wget -O splunkforwarder-7.1.2-a0c72a66db66-linux-2.6-x86_64.rpm 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=7.1.2&product=universalforwarder&filename=splunkforwarder-7.1.2-a0c72a66db66-linux-2.6-x86_64.rpm&wget=true'
+
+Splunk master
+# wget -O splunk-7.1.2-a0c72a66db66-linux-2.6-x86_64.rpm 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=7.1.2&product=splunk&filename=splunk-7.1.2-a0c72a66db66-linux-2.6-x86_64.rpm&wget=true'
