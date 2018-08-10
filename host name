@@ -12,3 +12,16 @@ echo "your servername is :`hostname` "
 echo "your servername is :$HOSTNAME "
 =======================================================================================================
 =======================================================================================================
+#!/bin/bash
+#to change hostname
+echo "Enter your hostname"
+read servername
+echo "you are going to set hostname is $servername"
+echo "$servername" >/etc/hostname
+
+#privateip=$((ifconfig eth0 | grep -w 'inet' | awk '{print $2}'))
+privateip=$(hostname -I)
+echo "$privateip $servername" >>/etc/hosts
+hostname -F /etc/hostname
+echo "your servername is :`hostname` "
+echo "your servername is :$HOSTNAME "
