@@ -1,0 +1,90 @@
+#!/bin/bash
+#to change hostname
+servername=lab
+echo "you are going to set hostname is $servername"
+echo "$servername" >/etc/hostname
+
+#privateip=$((ifconfig eth0 | grep -w 'inet' | awk '{print $2}'))
+privateip=$(hostname -I)
+echo "$privateip $servername" >>/etc/hosts
+hostname -F /etc/hostname
+echo "your servername is :`hostname` "
+echo "your servername is :$HOSTNAME "
+cd /tmp/
+yum install wget unzip -y
+wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.rpm
+rpm -ivh jdk-8u131-linux-x64.rpm
+wget http://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.32/bin/apache-tomcat-8.5.32-windows-x64.zip
+unzip apache-tomcat-8.5.32-windows-x64.zip
+mv apache-tomcat-8.5.32 /opt/tomcat
+chmod -R 755 /opt/tomcat/
+rm -rf /opt/tomcat/webapps/*
+/opt/tomcat/bin/startup.sh
+sed -i 's/8080/80/g' /opt/tomcat1/conf/server.xml
+
+# Install Mysql Database.
+#install the mysql
+wget http://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpm
+rpm -ivh mysql57-community-release-el7-7.noarch.rpm
+yum install mysql-server*
+
+#Start mysql
+service mysqld start
+ps -ef | grep mysql
+
+#the it will creat log in /var/log/mysqld.log
+vim /var/log/mysqld.log
+#search :/temporary password
+#Copy Password
+GeX?UriH=7fi
+
+mysql_secure_installation
+
+#if it is failure 
+ mysql -h localhost -u root -p
+
+#(optional)
+#if failure
+SET GLOBAL validate_password.policy = 0;
+
+
+#check show database
+show databases;
+mysql -h localhost -u root -p
+#if you get error
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'cggrL@123';
+
+flush privileges;
+
+CREATE DATABASE petclinic;
+show databases;
+show tables;
+su petclinic;
+show 
+exit
+
+
+wget http://cliqr-appstore.s3.amazonaws.com/petclinic/petclinic.war
+
+after deploy check in browser will get 404 error
+
+then goto 
+cd /opt/tomcat/webapps/petclinic/WEB-INF/classes/db/mysql
+then backup initdb.sql
+then open initdb.sql
+give user root and password
+
+Then goto /opt/tomcat/webapps/petclinic/WEB-INF/classes/spring
+
+then download jar
+
+wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.12.zip
+
+
+
+
+
+
+wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.12.zip
+
