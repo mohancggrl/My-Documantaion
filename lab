@@ -19,8 +19,9 @@ unzip apache-tomcat-8.5.32-windows-x64.zip
 mv apache-tomcat-8.5.32 /opt/tomcat
 chmod -R 755 /opt/tomcat/
 rm -rf /opt/tomcat/webapps/*
+sed -i 's/8080/80/g' /opt/tomcat/conf/server.xml
 /opt/tomcat/bin/startup.sh
-sed -i 's/8080/80/g' /opt/tomcat1/conf/server.xml
+
 
 # Install Mysql Database.
 #install the mysql
