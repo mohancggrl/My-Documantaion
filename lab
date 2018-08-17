@@ -39,34 +39,32 @@ vim /var/log/mysqld.log
 #Copy Password
 GeX?UriH=7fi
 
+#to reset Password
 mysql_secure_installation
-
-#if it is failure 
- mysql -h localhost -u root -p
 
 #(optional)
 #if failure
 SET GLOBAL validate_password.policy = 0;
 
+#To Login database
+mysql -h localhost -u root -p
+
+
+
+flush privileges;
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'cggrL@123';
 
 #check show database
 show databases;
-mysql -h localhost -u root -p
-#if you get error
-
-ALTER USER 'root'@'localhost' IDENTIFIED BY 'cggrL@123';
-
-flush privileges;
-
 CREATE DATABASE petclinic;
 show databases;
 show tables;
-su petclinic;
-show 
+use petclinic;
 exit
 
-
+#Then Download package  
 wget http://cliqr-appstore.s3.amazonaws.com/petclinic/petclinic.war
+
 
 after deploy check in browser will get 404 error
 
@@ -81,11 +79,13 @@ Then goto /opt/tomcat/webapps/petclinic/WEB-INF/classes/spring
 then download jar
 
 wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.12.zip
+#unzip file
+#then go into unziped disectory
+#Copy this in /opt/tomcat/lib
+then give 755 permission to jar file
 
+Then reatart tomcat
 
+then see in brouser
 
-
-
-
-wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.12.zip
 
