@@ -23,8 +23,13 @@ sleep 5
 /opt/tomcat/bin/startup.shutdown.sh
 mv /opt/tomcat/webapps/petclinic/WEB-INF/classes/db/mysql/initDB.sql /opt/tomcat/webapps/petclinic/WEB-INF/classes/db/mysql/initDB.sql.backup
 mv /opt/tomcat/webapps/petclinic/WEB-INF/classes/spring/data-access.properties /opt/tomcat/webapps/petclinic/WEB-INF/classes/spring/data-access.properties.backup
-/opt/tomcat/bin/startup.sh
+cd /opt/tomcat/webapps/petclinic/WEB-INF/classes/db/mysql
+wget https://s3.amazonaws.com/mohanbucketfiles/initDB.sql
+cd /opt/tomcat/webapps/petclinic/WEB-INF/classes/spring/
+wget https://s3.amazonaws.com/mohanbucketfiles/data-access.properties
+cd /tmp
 wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.12.zip
 unzip mysql-connector-java-8.0.12.zip
 cp mysql-connector-java-8.0.12/mysql-connector-java-8.0.12.jar /opt/tomcat/lib/
 chmod 755 /opt/tomcat/lib/mysql-connector-java-8.0.12.jar
+/opt/tomcat/bin/startup.sh
