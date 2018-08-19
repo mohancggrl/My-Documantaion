@@ -19,10 +19,10 @@ yum install mysql-server*
 service mysqld start
 wget http://cliqr-appstore.s3.amazonaws.com/petclinic/petclinic.war
 cp petclinic.war /opt/tomcat/webapps/
+sleep 5
 /opt/tomcat/bin/startup.shutdown.sh
-cp /opt/tomcat/webapps/petclinic/WEB-INF/classes/db/mysql/initDB.sql initDB.sql.backup
-rm -f /opt/tomcat/webapps/petclinic/WEB-INF/classes/db/mysql/initDB.sql
-rm -f /opt/tomcat/webapps/petclinic/WEB-INF/classes/spring/data-access.properties
+mv /opt/tomcat/webapps/petclinic/WEB-INF/classes/db/mysql/initDB.sql /opt/tomcat/webapps/petclinic/WEB-INF/classes/db/mysql/initDB.sql.backup
+mv /opt/tomcat/webapps/petclinic/WEB-INF/classes/spring/data-access.properties /opt/tomcat/webapps/petclinic/WEB-INF/classes/spring/data-access.properties.backup
 /opt/tomcat/bin/startup.sh
 wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.12.zip
 unzip mysql-connector-java-8.0.12.zip
