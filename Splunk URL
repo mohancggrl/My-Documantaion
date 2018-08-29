@@ -1,6 +1,40 @@
+#!/bin/bash
+#to change hostname
+servername=splukmaster
+echo "you are going to set hostname is $servername"
+echo "$servername" >/etc/hostname
 
-Splunk forwarder
-# wget -O splunkforwarder-7.1.2-a0c72a66db66-linux-2.6-x86_64.rpm 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=7.1.2&product=universalforwarder&filename=splunkforwarder-7.1.2-a0c72a66db66-linux-2.6-x86_64.rpm&wget=true'
+#privateip=$((ifconfig eth0 | grep -w 'inet' | awk '{print $2}'))
+privateip=$(hostname -I)
+echo "$privateip $servername" >>/etc/hosts
+hostname -F /etc/hostname
+echo "your servername is :`hostname` "
+echo "your servername is :$HOSTNAME "
+wget -O splunk-7.1.2-a0c72a66db66-linux-2.6-x86_64.rpm 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=7.1.2&product=splunk&filename=splunk-7.1.2-a0c72a66db66-linux-2.6-x86_64.rpm&wget=true'
+rpm -ivh splunk-7.1.2-a0c72a66db66-linux-2.6-x86_64.rpm
+chmod -R 777 /opt/splunk
+/opt/splunk/bin/splunk start --accept-license
+/opt/splunk/bin/splunk enable listen 9997
+==================================================================================================================================
 
-Splunk master
-# wget -O splunk-7.1.2-a0c72a66db66-linux-2.6-x86_64.rpm 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=7.1.2&product=splunk&filename=splunk-7.1.2-a0c72a66db66-linux-2.6-x86_64.rpm&wget=true'
+#!/bin/bash
+#to change hostname
+servername=universelforwarder
+echo "you are going to set hostname is $servername"
+echo "$servername" >/etc/hostname
+
+#privateip=$((ifconfig eth0 | grep -w 'inet' | awk '{print $2}'))
+privateip=$(hostname -I)
+echo "$privateip $servername" >>/etc/hosts
+hostname -F /etc/hostname
+echo "your servername is :`hostname` "
+echo "your servername is :$HOSTNAME "
+wget -O splunkforwarder-7.1.2-a0c72a66db66-linux-2.6-x86_64.rpm 'https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=7.1.2&product=universalforwarder&filename=splunkforwarder-7.1.2-a0c72a66db66-linux-2.6-x86_64.rpm&wget=true'
+rpm -ivh splunkforwarder-7.1.2-a0c72a66db66-linux-2.6-x86_64.rpm
+chmod -R 777 /opt/splunkforwader
+/opt/splunkforwader/bin/splunk start --accept-license
+/opt/splunkforwader/bin/splunk add forward-server <ipaddress of clustermaster instance>:9997
+/opt/splunkforwader/bin/splunk add monitor /var/log/messages -index main -sourcetype MyUFServerLogs
+/opt/splunkforwader/bin/splunk enable listen 9997 
+
+
