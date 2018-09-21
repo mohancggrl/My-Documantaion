@@ -1,11 +1,18 @@
 #!/bin/bash
+#to change hostname
+servername=jenkins
+echo "you are going to set hostname is $servername"
+echo "$servername" >/etc/hostname
+privateip=$(hostname -I)
+echo "$privateip $servername" >>/etc/hosts
+hostname -F /etc/hostname
 cd /tmp/
 yum install wget unzip -y
 wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.rpm
 rpm -ivh jdk-8u131-linux-x64.rpm
-wget http://www-us.apache.org/dist/tomcat/tomcat-7/v7.0.90/bin/apache-tomcat-7.0.90-windows-x64.zip
-unzip apache-tomcat-7.0.90-windows-x64.zip
-mv apache-tomcat-7.0.90 /opt/tomcat
+wget http://mirrors.wuchna.com/apachemirror/tomcat/tomcat-8/v8.5.34/bin/apache-tomcat-8.5.34-windows-x64.zip
+unzip apache-tomcat-8.5.34-windows-x64.zip
+mv apache-tomcat-8.5.34 /opt/tomcat
 chmod -R 755 /opt/tomcat/
 rm -rf /opt/tomcat/webapps/*
 /opt/tomcat/bin/startup.sh
