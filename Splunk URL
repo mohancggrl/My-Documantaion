@@ -31,6 +31,6 @@ chmod -R 777 /opt/splunkforwader
 /opt/splunkforwader/bin/splunk start --accept-license
 /opt/splunkforwader/bin/splunk add forward-server <ipaddress of clustermaster instance>:9997
 /opt/splunkforwader/bin/splunk add monitor /var/log/messages -index main -sourcetype MyUFServerLogs
-/opt/splunkforwader/bin/splunk enable listen 9997 
+
 
 
